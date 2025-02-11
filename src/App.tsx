@@ -6,6 +6,11 @@ import { fetchPollingUnits, pollingUnitProps } from './services/api_service';
 import { baseUrl } from './services/api';
 
 
+interface lgaProps {
+  lga_id: number;
+  lga_name: string;
+}
+
 function App() {
 
   const { data, isLoading } = useQuery({
@@ -49,7 +54,7 @@ function App() {
       <Select>
         <SelectTrigger className='w-64 text-black ' title='polling-point name' content='Choose polling point'>Summed Total,select lga</SelectTrigger>
         <SelectContent className='flex flex-col w-full  overflow-y-auto'>
-          {lga.map((item, index: number) => (
+          {lga.map((item: lgaProps, index: number) => (
             <Link key={index} to={`lga-results/${item.lga_id}`} className='z-[2] block w-full'>
               {item.lga_name}
             </Link>
